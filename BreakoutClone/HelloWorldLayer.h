@@ -48,6 +48,8 @@
     CCSprite *lifeHeart1;
     CCSprite *lifeHeart2;
     CCSprite *lifeHeart3;
+    CCSprite *ball;
+    
     
     int counterForLifeHeart;    
     CCSprite *paddle;
@@ -55,8 +57,36 @@
     CCArray *bonus;
     int nextBonus;
     double nextBonusSpawn;
+    CCSprite *bonusSprite;
+    CCSprite *powerUp;
+    CCLabelTTF *powerUpLabel;
+    int powerUpInt;
+    NSString *powerUpString;
+    int width;
     
     
+  
+    
+    
+    
+    CCLabelTTF *scoreLabel;
+    int score;
+    NSString *scoreString;
+   
+    CCSprite *paddle2;
+    b2FixtureDef paddleShapeDef;       
+    b2Vec2 force;
+    b2BodyDef paddleBodyDef;
+    b2Body *ballBody;
+    
+    int counterInt;
+    int seconds;
+    int minutes;
+    
+    
+    
+    
+    b2BodyDef ballBodyDef;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

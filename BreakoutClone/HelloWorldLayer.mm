@@ -10,7 +10,7 @@
 #import "HelloWorldLayer.h"
 #import "GameOverScreen.h"
 #import "AppDelegate.h"
-#define kNumBonus 2
+#define kNumBonus 1
 
 
 
@@ -21,7 +21,7 @@
 
 @synthesize secs, mins, totalTimeString, timeInt, lives;
 
- 
+      int width = 40;
 
 
 
@@ -51,18 +51,61 @@
         
         timeInt = 30;
         
-        counterForLifeHeart = 3;        
+        counterForLifeHeart = 3;
         
+        
+        score = 0;
+        
+        powerUpInt = 0;
+        
+        counterInt = 5;
+        
+   
+        
+    
+        
+        
+        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:25.0];
+		[scoreLabel setPosition:ccp(280, 50)];
+		[scoreLabel setColor:ccc3(255, 255, 255)];
+		[self addChild:scoreLabel z:3];
+        
+        
+        
+        CCLabelTTF *scorey = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:25.0];
+        scorey.position = ccp(230, 50);
+        [self addChild:scorey];
+        
+        
+       
+        
+        
+        powerUpLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:25.0];
+		[powerUpLabel setPosition:ccp(60, 50)];
+		[powerUpLabel setColor:ccc3(255, 255, 255)];
+		[self addChild:powerUpLabel z:3];
+        
+        
+        
+        CCLabelTTF *powerey = [CCLabelTTF labelWithString:@"PP: " fontName:@"Marker Felt" fontSize:25.0];
+        powerey.position = ccp(30, 50);
+        [self addChild:powerey];
         
      
         
         timer = [[CCLabelTTF labelWithString:totalTimeString dimensions:CGSizeMake(130, 27)hAlignment:kCCTextAlignmentCenter fontName:@"Marker Felt" fontSize:25.0]retain];
         
+     
         
         
         timer.position = ccp(155, 425);
         [self schedule:@selector(tick2:)interval: 1.0];
         [self addChild:timer z:3 tag: timeInt];
+        
+       
+        
+        
+        
         
         //lives hearts
         
@@ -88,20 +131,23 @@
     
       
    
-        
+      
         
        
         
         
    //Create a sprite for the ball
         
-        CCSprite *ball = [CCSprite spriteWithFile:@"redball.png" rect:CGRectMake(0,0,52,52)];
+        ball = [CCSprite spriteWithFile:@"redball.png" rect:CGRectMake(0, 0, 20, 20) ];
         ball.position = ccp(100,100);
         
         ball.tag = 1;
         //tag is used for identification process
         
-        [self addChild:ball];
+        [self addChild:ball z:2];
+        
+        
+        
         
         
         //create a world
@@ -141,11 +187,11 @@
     //create a ball body
         
         
-        b2BodyDef ballBodyDef;
+        //b2BodyDef ballBodyDef;
         ballBodyDef.type = b2_dynamicBody; //because the ball is moving. static for fixed
         ballBodyDef.position.Set(100/PTM_RATIO, 100/PTM_RATIO);
         ballBodyDef.userData = ball;
-        b2Body *ballBody = _world->CreateBody(&ballBodyDef);
+        ballBody = _world->CreateBody(&ballBodyDef);
         
     //Create a circle shape for the ball
         
@@ -166,18 +212,26 @@
        
     //force for the object to move
         
-        b2Vec2 force = b2Vec2(7,7);
+       force = b2Vec2(7,7);
         ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
         
         
         //Create paddle and add to layer
         
-       paddle = [CCSprite spriteWithFile:@"small-button-over.png"];
+        
+        
+        
+        
+        paddle = [CCSprite spriteWithFile:@"Sky_Blue.png" rect:CGRectMake(0, 0, 25, 10)];
+     
+       
+        
+        
         
         paddle.position=ccp(winSize.width/2,200);
+    
         
-        
-        [self addChild:paddle];
+        [self addChild:paddle z:2];
         
         self.isAccelerometerEnabled = YES;
         
@@ -188,7 +242,7 @@
         
         
         //Creation of body of paddle
-        b2BodyDef paddleBodyDef;
+        //b2BodyDef paddleBodyDef;
         paddleBodyDef.type = b2_dynamicBody;
         paddleBodyDef.position.Set(winSize.width/2/PTM_RATIO, 100/PTM_RATIO);
         paddleBodyDef.userData=paddle;
@@ -205,7 +259,7 @@
         
         //create shape definition and then add to body
         
-        b2FixtureDef paddleShapeDef;
+        //b2FixtureDef paddleShapeDef;
         paddleShapeDef.shape = &paddleShape;
         paddleShapeDef.density = 10.0f;
         paddleShapeDef.friction=0.4f;
@@ -215,6 +269,9 @@
         _contactListener = new MyContactListener();
         _world->SetContactListener(_contactListener);
         
+        
+        
+     
         
         //bricks
         
@@ -355,10 +412,6 @@
             jointDef.Initialize(_paddleBody, _groundBody, _paddleBody->GetWorldCenter(), worldAxis);
             _world->CreateJoint(&jointDef);
             
-            
-            
-                       
-        
         
     
         
@@ -373,6 +426,10 @@
 		return self;
         
     }
+
+
+
+
 
 
 
@@ -404,9 +461,108 @@
         }
     }
     
-  
- 
     
+    
+    if(CGRectIntersectsRect(powerUp.boundingBox, paddle.boundingBox))
+    {
+        
+        
+        powerUp.visible=NO;
+        
+        powerUp = NULL;
+        
+        
+        
+        NSLog(@"power up that shit!");
+        
+        
+        
+        
+        
+        
+        powerUpInt++;
+        
+        [powerUpLabel setString:[NSString stringWithFormat:@"%d", powerUpInt]];
+        
+        
+      
+        
+        
+        
+        
+    
+        
+            
+    
+    
+    
+    
+    }
+    
+    
+    
+    if (powerUpInt%5==0 && powerUpInt>0)
+        
+        
+    {
+        
+        
+        
+        
+        NSLog(@"-----------------------------");
+        
+        
+        paddle.scaleX=3.0;
+        
+     
+        [self schedule:@selector(tick3:)interval: 1.0];
+        
+       
+        
+        
+        
+    }
+    
+    
+    
+   if (powerUpInt%4==0 && powerUpInt>0)
+        
+        
+    {
+         NSLog(@"hahaha");
+        
+       
+        
+        
+        
+        
+       // if(CGRectIntersectsRect(paddle.boundingBox, ball.boundingBox)){
+            
+            
+            NSLog(@"hahaha");
+            
+        
+        
+        //ballBody->SetLinearVelocity(b2Vec2(0,0));
+        
+        ball.position = CGPoint(paddle.position);
+        
+        
+         [self schedule:@selector(tick:)interval: 1.0];
+            
+            
+        //}
+        
+    }
+
+
+    
+    
+
+    
+   
+    
+
     std::vector<b2Body *>toDestroy;
     std::vector<MyContact>::iterator pos;
     for (pos=_contactListener->_contacts.begin();
@@ -416,7 +572,7 @@
         if ((contact.fixtureA == _bottomFixture && contact.fixtureB == _ballFixture) ||
             (contact.fixtureA == _ballFixture && contact.fixtureB == _bottomFixture)) {
             
-            [paddle runAction:[CCBlink actionWithDuration:0.5 blinks:9]];
+            //[paddle runAction:[CCBlink actionWithDuration:0.5 blinks:3]];
             
             
             if (lifeHeart3.visible==YES){
@@ -428,16 +584,10 @@
             else
             {
                 NSLog(@"Ball hit bottom!");
-                CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-                [[CCDirector sharedDirector] replaceScene:gameOverScene];            }
+                /*CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+                [[CCDirector sharedDirector] replaceScene:gameOverScene];   */         }
            
             
-            
-        
-            
-            //NSLog(@"Ball hit bottom!");
-            //CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-            //[[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
         
         b2Body *bodyA = contact.fixtureA->GetBody();
@@ -450,6 +600,11 @@
             if (spriteA.tag == 1 && spriteB.tag == 2) {
                 if (std::find(toDestroy.begin(), toDestroy.end(), bodyB) == toDestroy.end()) {
                     toDestroy.push_back(bodyB);
+                    
+                    
+                    
+                  
+                    
                 }
             }
             
@@ -463,19 +618,81 @@
     }
     
     std::vector<b2Body *>::iterator pos2;
-    for (pos2 = toDestroy.begin(); pos2 != toDestroy.end(); ++pos2) {
+    for (pos2 = toDestroy.begin(); pos2 != toDestroy.end(); ++pos2)
+    
+    {
         b2Body *body = *pos2;
-        if (body->GetUserData() != NULL) {
+        
+        
+        if (body->GetUserData() != NULL)
+        
+        
+        {
             CCSprite *sprite = (CCSprite *) body->GetUserData();
             [self removeChild:sprite cleanup:YES];
         }
         _world->DestroyBody(body);
-    }
-    
-            
         
-        }
+        
+        
+                
+          
+        
+        
+       
+        
+        
+        
+      CGSize winSize = [CCDirector sharedDirector].winSize;  
+        powerUp = [CCSprite spriteWithFile:@"LifeHeart.png"rect:CGRectMake(0, 0, 27, 27)];
+        
+        [self addChild:powerUp z:2];
+        
+        powerUp.position = CGPoint(ball.position);
+       
+        //[self addChild:powerUp];
+        
+        powerUp.visible=YES;
+        
+        [powerUp runAction:[CCSequence actions:
+                                  [CCMoveBy actionWithDuration:4.0 position:ccp(0,-winSize.height-powerUp.contentSize.height)], nil]];
+      
+       
+        
+        
+    score=score+10;
     
+        NSLog(@" %d", score);
+        
+        [scoreLabel setString:[NSString stringWithFormat:@"%i", score]];
+        
+        
+        if (score>20){
+            
+            
+           
+          
+            
+            
+            
+        }
+
+   
+        
+  
+        
+        
+        
+        
+    }
+
+    }
+
+        
+
+
+
+
 
 
 -(void)tick2: (id) sender
@@ -504,6 +721,59 @@
         
         
     }
+    
+}
+
+-(void)tick: (id) sender
+{
+        
+    
+    counterInt--;
+    
+    secs = timeInt %30;
+    mins = timeInt/60;
+    
+   
+    
+    if (self->counterInt<=0){
+        
+        [self unschedule:@selector(tick:)];
+        
+        paddle.scaleX=1.0;
+        
+        //ballBody->ApplyForce(b2vec(0, 0), ballBody[0]->GetWorldCenter());
+
+        
+
+    }
+    
+    
+}
+
+
+-(void)tick3: (id) sender
+{
+    
+    
+    counterInt--;
+    
+    secs = timeInt %30;
+    mins = timeInt/60;
+    
+    
+    
+    if (self->counterInt<=0){
+        
+        [self unschedule:@selector(tick:)];
+        
+        paddle.scaleX=1.0;
+        
+        //ballBody->ApplyForce(b2vec(0, 0), ballBody[0]->GetWorldCenter());
+        
+        
+        
+    }
+    
     
 }
 
