@@ -212,8 +212,8 @@
        
     //force for the object to move
         
-       force = b2Vec2(7,7);
-        ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
+       //force = b2Vec2(7,7);
+        //ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
         
         
         //Create paddle and add to layer
@@ -238,7 +238,10 @@
        
         [[UIAccelerometer sharedAccelerometer]setUpdateInterval:(1.0/30)];
         
+        //[self setTouchEnabled:YES];
         
+        
+        self.isTouchEnabled = YES;
         
         
         //Creation of body of paddle
@@ -315,6 +318,9 @@
 
             
         }
+        
+        
+        
         
         
         
@@ -434,7 +440,6 @@
 
 
 
-
 -(void)update:(ccTime)dt
 {
     _world->Step(dt, 10, 10);
@@ -525,8 +530,22 @@
     
     
     
-   if (powerUpInt%4==0 && powerUpInt>0)
-        
+   if (powerUpInt>1)
+   {
+       
+       
+       //if (CGRectIntersectsRect(paddle.boundingBox, ball.boundingBox))
+       //{
+       
+       ballBody->SetLinearVelocity(b2Vec2(0,0));
+       
+       //}
+       
+   }
+    
+    
+    
+/*
         
     {
          NSLog(@"hahaha");
@@ -536,24 +555,30 @@
         
         
         
-       // if(CGRectIntersectsRect(paddle.boundingBox, ball.boundingBox)){
+       if(CGRectIntersectsRect(paddle.boundingBox, ball.boundingBox)){
             
             
             NSLog(@"hahaha");
             
         
         
-        //ballBody->SetLinearVelocity(b2Vec2(0,0));
+        ballBody->SetLinearVelocity(b2Vec2(0,0));
+        
+        
+       //[self schedule:@selector(stop:)];
         
         ball.position = CGPoint(paddle.position);
         
+    
         
-         [self schedule:@selector(tick:)interval: 1.0];
-            
-            
-        //}
+    */    
         
-    }
+    
+ 
+ 
+ 
+ 
+
 
 
     
@@ -666,32 +691,24 @@
         
         [scoreLabel setString:[NSString stringWithFormat:@"%i", score]];
         
-        
-        if (score>20){
-            
-            
-           
-          
-            
-            
-            
-        }
-
-   
-        
-  
-        
-        
-        
+    
         
     }
 
     }
 
-        
 
 
 
+-(void) stop: (id)sender
+{
+    
+    
+   ballBody->SetLinearVelocity(b2Vec2(0,0)); 
+    
+    
+    
+}
 
 
 
@@ -724,31 +741,7 @@
     
 }
 
--(void)tick: (id) sender
-{
-        
-    
-    counterInt--;
-    
-    secs = timeInt %30;
-    mins = timeInt/60;
-    
-   
-    
-    if (self->counterInt<=0){
-        
-        [self unschedule:@selector(tick:)];
-        
-        paddle.scaleX=1.0;
-        
-        //ballBody->ApplyForce(b2vec(0, 0), ballBody[0]->GetWorldCenter());
 
-        
-
-    }
-    
-    
-}
 
 
 -(void)tick3: (id) sender
@@ -795,21 +788,7 @@
     
     
 }
-/*#define kFilteringFactor 0.1
-UIAccelerationValue rollingY;
--(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
-{
-    
-    rollingY = (acceleration.y*kFilteringFactor)+(rollingY*(1.0-kFilteringFactor));
-    
-    float acelx = -(acceleration.y-rollingY);
-    
-    float x = acelx*40;
-    
-    if(self.position.x)
-    
-}
- */
+
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
@@ -825,7 +804,24 @@ UIAccelerationValue rollingY;
    
 }
 
- 
+- (void)ccTouchesBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    
+    
+    
+   /* b2Vec force2 = b2Vec2(7,7);
+    ballBody->ApplyLinearImpulse(force2, ballBodyDef.position);*/
+    
+    b2Vec2 force2 = b2Vec2(7, 7);
+    ballBody->ApplyLinearImpulse(force2, ballBody->GetPosition());
+    
+    
+    //[self unschedule:@selector(stop:)];
+    
+    
+    //ballBody->SetLinearVelocity(b2Vec2(10,10));
+    
+    
+}
 
     
  
