@@ -549,6 +549,42 @@
     
     
     
+    
+    
+    if(CGRectIntersectsRect(powerUp.boundingBox, paddle.boundingBox))
+    {
+        
+        powerUp.visible = 0;
+        [powerUp setOpacity:0];
+        
+        
+        
+        powerUp = NULL;
+        
+        
+        
+        NSLog(@"00000000000000000");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        powerUpInt++;
+        
+        [powerUpLabel setString:[NSString stringWithFormat:@"  %d", powerUpInt]];
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
     
     if (powerUpInt%5==0 && powerUpInt>0)
@@ -772,36 +808,7 @@
     }
     
     
-    
-    if(CGRectIntersectsRect(powerUp.boundingBox, paddle.boundingBox))
-    {
-        
-        powerUp.visible = NO;
-        powerUp = NULL;
-        
-        
-        
-        
-        
-        NSLog(@"power up that shit!");
-        
-        
-        
-        
-        
-        
-        powerUpInt++;
-        
-        [powerUpLabel setString:[NSString stringWithFormat:@">> %d", powerUpInt]];
-        
-        
-        
-        
-        
-        
-        
-        
-    }
+   
 
     }
 
