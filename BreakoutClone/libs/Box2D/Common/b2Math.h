@@ -20,7 +20,7 @@
 #define B2_MATH_H
 
 #include <Box2D/Common/b2Settings.h>
-
+#include <cassert>
 #include <cmath>
 #include <cfloat>
 #include <cstddef>

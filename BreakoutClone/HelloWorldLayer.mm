@@ -10,7 +10,9 @@
 #import "HelloWorldLayer.h"
 #import "GameOverScreen.h"
 #import "AppDelegate.h"
-#define kNumBonus 1
+#import "MyMenu.h"
+#import "PauseScreen.h"
+
 
 
 
@@ -42,11 +44,30 @@
 
 -(id) init
 {
+    if((self = [super initWithColor:ccc4(0, 0, 0, 0)]))
+   {
+        
+   
     
-	if( (self=[super init])){
+    
     CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        
+       
+       
+       _pauseScreenUp = FALSE;
+       
+       CCMenuItemFont *pauseMenuItem = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(PauseButtonTapped:)];
+       pauseMenuItem.position = ccp(100,100);
+       
+       
+       CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
+       
+       upgradeMenu.position=CGPointZero;
+
+       
+       [self addChild:upgradeMenu z:2];
+       
+             
+       
         totalTimeString = @"30";
         
         timeInt = 30;
@@ -59,11 +80,24 @@
         powerUpInt = 0;
         
         counterInt = 5;
-        
+       
+       
+       
+       
+       
+       /*CCMenuItemFont*pauseButtonFont = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(PauseButtonTapped:)];
+       
+       pauseButtonFont.position = ccp(100,100);
+
+       
+       //[self addChild:pauseButtonFont];
+       
    
-        
-    
-        
+       CCMenu *menu = [CCMenu menuWithItems:pauseButtonFont, nil];
+       
+       [self addChild:menu z:4];
+       
+       */ 
         
         scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:25.0];
 		[scoreLabel setPosition:ccp(280, 50)];
@@ -111,15 +145,15 @@
         
         
         lifeHeart1 = [CCSprite spriteWithFile:@"star.png"];
-        [lifeHeart1 setPosition:CGPointMake(15, 470)];
+        [lifeHeart1 setPosition:CGPointMake(15, 450)];
         [self addChild:lifeHeart1];
         
         lifeHeart2 = [CCSprite spriteWithFile:@"star.png"];
-        [lifeHeart2 setPosition:CGPointMake(45, 470)];
+        [lifeHeart2 setPosition:CGPointMake(45, 450)];
         [self addChild:lifeHeart2];
         
         lifeHeart3 = [CCSprite spriteWithFile:@"star.png"];
-        [lifeHeart3 setPosition:CGPointMake(75, 470)];
+        [lifeHeart3 setPosition:CGPointMake(75, 450)];
         [self addChild:lifeHeart3];
 
         
@@ -144,7 +178,7 @@
         ball.tag = 1;
         //tag is used for identification process
         
-        [self addChild:ball z:2];
+        [self addChild:ball];
         
         
         
@@ -212,8 +246,8 @@
        
     //force for the object to move
         
-       //force = b2Vec2(7,7);
-        //ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
+       force = b2Vec2(7,7);
+    ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
         
         
         //Create paddle and add to layer
@@ -222,7 +256,7 @@
         
         
         
-        paddle = [CCSprite spriteWithFile:@"Sky_Blue.png" rect:CGRectMake(0, 0, 25, 10)];
+        paddle = [CCSprite spriteWithFile:@"Paddle.jpg" rect:CGRectMake(0, 0, 45, 20)];
      
        
         
@@ -231,9 +265,10 @@
         paddle.position=ccp(winSize.width/2,200);
     
         
-        [self addChild:paddle z:2];
+        [self addChild:paddle];
         
         self.isAccelerometerEnabled = YES;
+       self.isTouchEnabled = YES;
         
        
         [[UIAccelerometer sharedAccelerometer]setUpdateInterval:(1.0/30)];
@@ -241,7 +276,7 @@
         //[self setTouchEnabled:YES];
         
         
-        self.isTouchEnabled = YES;
+        
         
         
         //Creation of body of paddle
@@ -255,7 +290,7 @@
         //Create paddle shape
         
         b2PolygonShape paddleShape;
-        paddleShape.SetAsBox(paddle.contentSize.width/PTM_RATIO, paddle.contentSize.height/PTM_RATIO);
+        paddleShape.SetAsBox(paddle.contentSize.width/PTM_RATIO,paddle.contentSize.height/PTM_RATIO);
         
         
         //defined kung ano yung magagalaw sa paddle. pag *1/2 ibig sabihin magagalaw yung kalahati
@@ -425,7 +460,7 @@
         
         
         
-                      
+   self. isTouchEnabled = YES;                   
         
 
     }
@@ -434,14 +469,60 @@
     }
 
 
+-(void)PauseButtonTapped:(id)sender
+{
+    if(_pauseScreenUp ==FALSE)
+    {
+    _pauseScreenUp=TRUE;
+   
+        [[CCDirector sharedDirector] pause];
+        
+        CGSize s = [[CCDirector sharedDirector] winSize];
+        CCLayerColor* pauseLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 150) width: s.width height: s.height];
+        pauseLayer.position = CGPointZero;
+        [self addChild: pauseLayer z:4];
+        
+        _pauseScreen =[[CCSprite spriteWithFile:@"Sky_Blue.png"]retain];
+        _pauseScreen.position= ccp(250,190);
+        [self addChild:_pauseScreen z:4];
+        
+        CCMenuItemFont *ResumeMenuItem = [CCMenuItemFont itemWithString:@"Resume" target:self selector:@selector(ResumeButtonTapped:)];
+        
+        ResumeMenuItem.position = ccp(250, 190);
+        
+        CCMenuItemFont *QuitMenuItem = [CCMenuItemFont itemWithString:@"Quit" target:self selector:@selector(QuitButtonTapped:)];
+        
+        QuitMenuItem.position = ccp(250, 100);
+        
+        _pauseScreenMenu = [CCMenu menuWithItems:ResumeMenuItem,QuitMenuItem, nil];
+        _pauseScreenMenu.position = ccp(0,0);
+        [self addChild:_pauseScreenMenu z:10];
+    }
+}
 
+-(void)ResumeButtonTapped:(id)sender{
+    [self removeChild:_pauseScreen cleanup:YES];
+    [self removeChild:_pauseScreenMenu cleanup:YES];
+    [self removeChild:pauseLayer cleanup:YES];
+    [[CCDirector sharedDirector] resume];
+    _pauseScreenUp=FALSE;
+}
 
+-(void)QuitButtonTapped:(id)sender{
+    [self removeChild:_pauseScreen cleanup:YES];
+    [self removeChild:_pauseScreenMenu cleanup:YES];
+    [self removeChild:pauseLayer cleanup:YES];
+    [[CCDirector sharedDirector] resume];
+    _pauseScreenUp=FALSE;
+    [[UIApplication sharedApplication] terminateWithSuccess];
+}
 
 
 
 
 -(void)update:(ccTime)dt
 {
+    
     _world->Step(dt, 10, 10);
     for (b2Body *b = _world->GetBodyList(); b; b=b->GetNext()) {
         if(b->GetUserData() != NULL){
@@ -468,43 +549,7 @@
     
     
     
-    if(CGRectIntersectsRect(powerUp.boundingBox, paddle.boundingBox))
-    {
-        
-        
-        powerUp.visible=NO;
-        
-        powerUp = NULL;
-        
-        
-        
-        NSLog(@"power up that shit!");
-        
-        
-        
-        
-        
-        
-        powerUpInt++;
-        
-        [powerUpLabel setString:[NSString stringWithFormat:@"%d", powerUpInt]];
-        
-        
-      
-        
-        
-        
-        
-    
-        
-            
-    
-    
-    
-    
-    }
-    
-    
+
     
     if (powerUpInt%5==0 && powerUpInt>0)
         
@@ -530,18 +575,7 @@
     
     
     
-   if (powerUpInt>1)
-   {
-       
-       
-       //if (CGRectIntersectsRect(paddle.boundingBox, ball.boundingBox))
-       //{
-       
-       ballBody->SetLinearVelocity(b2Vec2(0,0));
-       
-       //}
-       
-   }
+
     
     
     
@@ -577,7 +611,7 @@
  
  
  
- 
+    
 
 
 
@@ -594,6 +628,44 @@
          pos != _contactListener->_contacts.end(); ++pos) {
         MyContact contact = *pos;
         
+        
+        if (powerUpInt>3){
+            
+            
+        
+        if ((contact.fixtureA == _ballFixture && contact.fixtureB == _paddleFixture) ||
+            (contact.fixtureA == _paddleFixture && contact.fixtureB == _ballFixture)) {
+            
+            NSLog(@"aaaaaaaaaaaaaa");
+            
+            ballBody->SetLinearVelocity(b2Vec2(0,0));
+            ball.position = CGPoint(paddle.position);
+            
+            
+
+           
+            
+            
+            
+              self.isTouchEnabled = YES;
+            
+            
+            //CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+           [[CCDirector sharedDirector] replaceScene:[GameOver scene]];
+           
+            
+            
+            
+             
+         
+                 
+
+            
+            
+        }
+        }
+        
+        
         if ((contact.fixtureA == _bottomFixture && contact.fixtureB == _ballFixture) ||
             (contact.fixtureA == _ballFixture && contact.fixtureB == _bottomFixture)) {
             
@@ -609,8 +681,8 @@
             else
             {
                 NSLog(@"Ball hit bottom!");
-                /*CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-                [[CCDirector sharedDirector] replaceScene:gameOverScene];   */         }
+                
+                [[CCDirector sharedDirector] replaceScene:[GameOver scene]];            }
            
             
         }
@@ -671,7 +743,7 @@
       CGSize winSize = [CCDirector sharedDirector].winSize;  
         powerUp = [CCSprite spriteWithFile:@"LifeHeart.png"rect:CGRectMake(0, 0, 27, 27)];
         
-        [self addChild:powerUp z:2];
+        [self addChild:powerUp];
         
         powerUp.position = CGPoint(ball.position);
        
@@ -691,24 +763,49 @@
         
         [scoreLabel setString:[NSString stringWithFormat:@"%i", score]];
         
+        
+        
+        
+        
     
+        
+    }
+    
+    
+    
+    if(CGRectIntersectsRect(powerUp.boundingBox, paddle.boundingBox))
+    {
+        
+        powerUp.visible = NO;
+        powerUp = NULL;
+        
+        
+        
+        
+        
+        NSLog(@"power up that shit!");
+        
+        
+        
+        
+        
+        
+        powerUpInt++;
+        
+        [powerUpLabel setString:[NSString stringWithFormat:@">> %d", powerUpInt]];
+        
+        
+        
+        
+        
+        
+        
         
     }
 
     }
 
 
-
-
--(void) stop: (id)sender
-{
-    
-    
-   ballBody->SetLinearVelocity(b2Vec2(0,0)); 
-    
-    
-    
-}
 
 
 
@@ -761,7 +858,7 @@
         
         paddle.scaleX=1.0;
         
-        //ballBody->ApplyForce(b2vec(0, 0), ballBody[0]->GetWorldCenter());
+        //ballBody->ApplyForce(b2vec(1, 1), ballBody[0]->GetWorldCenter());
         
         
         
@@ -807,19 +904,20 @@
 - (void)ccTouchesBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     
     
+      
     
-   /* b2Vec force2 = b2Vec2(7,7);
-    ballBody->ApplyLinearImpulse(force2, ballBodyDef.position);*/
-    
-    b2Vec2 force2 = b2Vec2(7, 7);
-    ballBody->ApplyLinearImpulse(force2, ballBody->GetPosition());
+    //b2Vec2 force2 = b2Vec2(7, 7);
+    //ballBody->ApplyLinearImpulse(force2, ballBody->GetPosition());
     
     
     //[self unschedule:@selector(stop:)];
     
+    if (powerUpInt>3){
     
-    //ballBody->SetLinearVelocity(b2Vec2(10,10));
     
+    ballBody->SetLinearVelocity(b2Vec2(10,10));
+    
+    }
     
 }
 

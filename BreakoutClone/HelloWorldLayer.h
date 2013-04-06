@@ -26,7 +26,7 @@
 #define PTM_RATIO 32.0
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface HelloWorldLayer : CCLayerColor
 {
     b2World*_world;
     b2Body *_groundBody;
@@ -53,6 +53,7 @@
     
     int counterForLifeHeart;    
     CCSprite *paddle;
+    CCSprite *pauseScreen;
     
     CCArray *bonus;
     int nextBonus;
@@ -64,8 +65,11 @@
     NSString *powerUpString;
     int width;
     
-    
-  
+    CCSprite *_movingSpring;
+    bool _pauseScreenUp;
+    CCLayer *pauseLayer;
+    CCSprite *_pauseScreen;
+    CCMenu *_pauseScreenMenu;
     
     
     
@@ -81,7 +85,20 @@
     
     int counterInt;
     int seconds;
-    int minutes;
+    //int minutes;
+    
+    
+    bool *pauseScreenUp;
+ 
+    CCLabelTTF *pause;
+    CCMenu *pauseScreenMenu;
+    CCMenuItemLabel *resume;
+    CCMenuItemLabel *restart;
+    CCMenuItemLabel *mainMenu;
+    
+    bool gameOver;
+    CCMenuItemLabel *pauseMenuItem;
+    
     
     
     

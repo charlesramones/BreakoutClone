@@ -7,42 +7,74 @@
 //
 
 #import "GameOverScreen.h"
+#import "cocos2d.h"
 #import "HelloWorldLayer.h"
+#import "MyMenu.h"
 
-@implementation GameOverLayer
 
-+(CCScene *) sceneWithWon:(BOOL)won {
+
+
+@implementation GameOver
++(id)scene
+{
     CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon:won] autorelease];
-    [scene addChild: layer];
+    
+    GameOver *layer = [GameOver node];
+    
+    [scene addChild:layer];
+    
+    
+    
     return scene;
+    
 }
 
-- (id)initWithWon:(BOOL)won {
-    if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
+
+
+-(id)init
+{
+    if((self = [super initWithColor:ccc4(0, 0, 0, 0)]))
+    {
         
-        NSString * message;
-        if (won) {
-            message = @"You Won!";
-        } else {
-            message = @"You Lose :[";
-        }
+        CCLabelTTF *title = [CCLabelTTF labelWithString:@"GAME OVER!" fontName:@"Arial" fontSize:40];
+        title.position = ccp(170, 400);
+        [self addChild:title];
         
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        CCLabelTTF * label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:32];
-        label.color = ccc3(0,0,0);
-        label.position = ccp(winSize.width/2, winSize.height/2);
-        [self addChild:label];
         
-        [self runAction:
-         [CCSequence actions:
-          [CCDelayTime actionWithDuration:3],
-          [CCCallBlockN actionWithBlock:^(CCNode *node) {
-             [[CCDirector sharedDirector] replaceScene:[HelloWorldLayer scene]];
-         }],
-          nil]];
+        CCLayer *menuLayer = [[CCLayer alloc]init];
+        [self addChild:menuLayer];
+        
+        
+        CCMenuItemFont *retryGameButton = [CCMenuItemFont itemWithString:@"Retry" target:self selector:@selector(Retry)];
+        retryGameButton.position = ccp(0, 0);
+        
+        CCMenuItemFont *mainMenuButton = [CCMenuItemFont itemWithString:@"Main Menu" target:self selector:@selector(Mainmenu)];
+        mainMenuButton.position = ccp(0, -50);
+        
+        
+        CCMenu *menu = [CCMenu menuWithItems:retryGameButton, mainMenuButton,  nil];
+        [menuLayer addChild: menu];
+        
+    
+    
+        
     }
     return self;
+}
+
+-(void)Retry
+{
+    [[CCDirector sharedDirector]replaceScene:[HelloWorldLayer scene]];
+}
+
+-(void)Mainmenu
+{
+    [[CCDirector sharedDirector]replaceScene:[MyMenu scene]];
+}
+
+-(void)dealloc
+{
+    [super dealloc];
 }
 
 @end

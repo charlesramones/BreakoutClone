@@ -6,11 +6,10 @@
 //
 //
 
-#import "cocos2d.h"
+#import "CCLayer.h"
 
-@interface GameOverLayer : CCLayerColor
+@interface GameOver : CCLayerColor
+{}
 
-+(CCScene *) sceneWithWon:(BOOL)won;
-- (id)initWithWon:(BOOL)won;
-
++(id)scene;
 @end
