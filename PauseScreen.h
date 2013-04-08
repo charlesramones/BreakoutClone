@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "HelloWorldLayer.h"
 
-@interface PauseScreen : NSObject
+@interface PauseLayer
+{
+    
+}
 
 @end

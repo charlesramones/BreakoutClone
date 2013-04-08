@@ -56,7 +56,7 @@
        _pauseScreenUp = FALSE;
        
        CCMenuItemFont *pauseMenuItem = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(PauseButtonTapped:)];
-       pauseMenuItem.position = ccp(100,100);
+       pauseMenuItem.position = ccp(250,300);
        
        
        CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
@@ -478,7 +478,7 @@
         [[CCDirector sharedDirector] pause];
         
         CGSize s = [[CCDirector sharedDirector] winSize];
-        CCLayerColor* pauseLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 150) width: s.width height: s.height];
+        CCLayerColor* pauseLayer = [CCLayerColor layerWithColor: ccc4(0, 0, 0, 0) width: s.width height: s.height];
         pauseLayer.position = CGPointZero;
         [self addChild: pauseLayer z:4];
         
@@ -500,6 +500,9 @@
     }
 }
 
+
+
+
 -(void)ResumeButtonTapped:(id)sender{
     [self removeChild:_pauseScreen cleanup:YES];
     [self removeChild:_pauseScreenMenu cleanup:YES];
@@ -516,6 +519,8 @@
     _pauseScreenUp=FALSE;
     [[UIApplication sharedApplication] terminateWithSuccess];
 }
+
+
 
 
 

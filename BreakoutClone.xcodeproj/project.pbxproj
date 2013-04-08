@@ -21,7 +21,6 @@
 		7D745A00170DE13400BDB897 /* Sky_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D7459FF170DE13400BDB897 /* Sky_Blue.png */; };
 		7D80F1B0170F50AB00CEEDED /* MyMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D80F1AF170F50AB00CEEDED /* MyMenu.mm */; };
 		7D80F1B7170F554900CEEDED /* ScoreScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D80F1B6170F554900CEEDED /* ScoreScene.mm */; };
-		7D80F1C1170F88F500CEEDED /* PauseScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D80F1C0170F88F500CEEDED /* PauseScreen.mm */; };
 		7D97E5A3170357BF0091EE6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D97E5A2170357BF0091EE6A /* QuartzCore.framework */; };
 		7D97E5A5170357BF0091EE6A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D97E5A4170357BF0091EE6A /* OpenGLES.framework */; };
 		7D97E5A7170357BF0091EE6A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D97E5A6170357BF0091EE6A /* OpenAL.framework */; };
@@ -233,8 +232,6 @@
 		7D80F1AF170F50AB00CEEDED /* MyMenu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyMenu.mm; sourceTree = "<group>"; };
 		7D80F1B5170F554900CEEDED /* ScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScene.h; sourceTree = "<group>"; };
 		7D80F1B6170F554900CEEDED /* ScoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScoreScene.mm; sourceTree = "<group>"; };
-		7D80F1BF170F88F500CEEDED /* PauseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScreen.h; sourceTree = "<group>"; };
-		7D80F1C0170F88F500CEEDED /* PauseScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PauseScreen.mm; sourceTree = "<group>"; };
 		7D97E59F170357BF0091EE6A /* BreakoutClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakoutClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D97E5A2170357BF0091EE6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7D97E5A4170357BF0091EE6A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -667,8 +664,6 @@
 				7D97E7C0170357C40091EE6A /* AppDelegate.mm */,
 				7D97E7C2170357C40091EE6A /* HelloWorldLayer.h */,
 				7D97E7C3170357C40091EE6A /* HelloWorldLayer.mm */,
-				7D80F1BF170F88F500CEEDED /* PauseScreen.h */,
-				7D80F1C0170F88F500CEEDED /* PauseScreen.mm */,
 				7D4E881B170A30EC004B43DA /* GameOverScreen.h */,
 				7D80F1AE170F50AA00CEEDED /* MyMenu.h */,
 				7D80F1AF170F50AB00CEEDED /* MyMenu.mm */,
@@ -1465,7 +1460,6 @@
 				7D4E881D170A30EC004B43DA /* GameOverScreen.mm in Sources */,
 				7D80F1B0170F50AB00CEEDED /* MyMenu.mm in Sources */,
 				7D80F1B7170F554900CEEDED /* ScoreScene.mm in Sources */,
-				7D80F1C1170F88F500CEEDED /* PauseScreen.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
