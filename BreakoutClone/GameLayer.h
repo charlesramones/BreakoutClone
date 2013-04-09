@@ -26,7 +26,7 @@
 #define PTM_RATIO 32.0
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayerColor
+@interface GameLayer : CCLayerColor
 {
     b2World*_world;
     b2Body *_groundBody;

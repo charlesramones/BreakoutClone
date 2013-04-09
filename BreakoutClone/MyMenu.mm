@@ -8,7 +8,7 @@
 
 #import "MyMenu.h"
 #import "cocos2d.h"
-#import "HelloWorldLayer.h"
+#import "GameLayer.h"
 #import "ScoreScene.h"
 
 
@@ -102,7 +102,7 @@
 -(void) startButton
 {
     
-    [[CCDirector sharedDirector]replaceScene:[HelloWorldLayer scene]];
+    [[CCDirector sharedDirector]replaceScene:[GameLayer scene]];
     
 }
 

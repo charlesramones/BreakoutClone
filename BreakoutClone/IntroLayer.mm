@@ -9,7 +9,10 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "HelloWorldLayer.h"
+#import "GameLayer.h"
+#import "Ball.h"
+#import "cocos2d.h"
+#import "Box2D.h"
 
 
 #pragma mark - IntroLayer
@@ -20,6 +23,9 @@
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
 {
+
+    
+    
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
@@ -37,6 +43,20 @@
 -(void) onEnter
 {
 	[super onEnter];
+    
+   
+
+    
+    Ball*bola = [[Ball init]alloc];
+    
+    
+    
+
+    
+    
+    
+    
+    
 
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];
@@ -60,6 +80,6 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] withColor:ccWHITE]];
 }
 @end

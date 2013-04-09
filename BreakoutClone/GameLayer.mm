@@ -7,19 +7,19 @@
 //
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "GameLayer.h"
 #import "GameOverScreen.h"
 #import "AppDelegate.h"
 #import "MyMenu.h"
 #import "PauseScreen.h"
+#import "GameComponents.h"
 
 
 
 
 
 
-
-@implementation HelloWorldLayer
+@implementation GameLayer
 
 @synthesize secs, mins, totalTimeString, timeInt, lives;
 
@@ -33,7 +33,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	GameLayer *layer = [GameLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -47,7 +47,6 @@
     if((self = [super initWithColor:ccc4(0, 0, 0, 0)]))
    {
         
-   
     
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -66,7 +65,7 @@
        
        [self addChild:upgradeMenu z:2];
        
-             
+        
        
         totalTimeString = @"30";
         

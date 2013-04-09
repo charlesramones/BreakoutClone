@@ -8,7 +8,7 @@
 
 #import "GameOverScreen.h"
 #import "cocos2d.h"
-#import "HelloWorldLayer.h"
+#import "GameLayer.h"
 #import "MyMenu.h"
 
 
@@ -64,7 +64,7 @@
 
 -(void)Retry
 {
-    [[CCDirector sharedDirector]replaceScene:[HelloWorldLayer scene]];
+    [[CCDirector sharedDirector]replaceScene:[GameLayer scene]];
 }
 
 -(void)Mainmenu
