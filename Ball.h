@@ -24,5 +24,6 @@
 }
 @property(nonatomic, strong)CCSprite *ball;
 @property(nonatomic)b2BodyDef ballBodyDef;
-@property(nonatomic)
+-(Ball*)initWithWorld:(b2World*)world;
+
 @end

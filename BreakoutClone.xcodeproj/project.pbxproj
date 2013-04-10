@@ -15,11 +15,12 @@
 		7D4E881F170A3F6A004B43DA /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E881E170A3F6A004B43DA /* square.png */; };
 		7D4E8821170A498D004B43DA /* ball.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E8820170A498D004B43DA /* ball.jpg */; };
 		7D4E8823170A4A8D004B43DA /* redball.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E8822170A4A8D004B43DA /* redball.png */; };
+		7D5BED351715C87C009CBDAC /* GUILabels.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D5BED341715C87C009CBDAC /* GUILabels.mm */; };
 		7D6C2BE217133E4900C962C1 /* GameComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BE117133E4900C962C1 /* GameComponents.m */; };
 		7D6C2BE81713631600C962C1 /* Ball.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BE71713631600C962C1 /* Ball.mm */; };
 		7D6C2BEB171365DF00C962C1 /* bricks.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BEA171365DF00C962C1 /* bricks.mm */; };
 		7D6C2BEE17136BD300C962C1 /* Paddle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BED17136BD300C962C1 /* Paddle.mm */; };
-		7D6C2BF117136D3300C962C1 /* World.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BF017136D3300C962C1 /* World.mm */; };
+		7D6C2BF117136D3300C962C1 /* MainController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C2BF017136D3300C962C1 /* MainController.mm */; };
 		7D70D9D1170B434B00F2F3BB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D70D9D0170B434B00F2F3BB /* Default-568h@2x.png */; };
 		7D70D9D3170B9E8500F2F3BB /* LifeHeart.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D70D9D2170B9E8500F2F3BB /* LifeHeart.png */; };
 		7D70D9D5170BA41700F2F3BB /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D70D9D4170BA41700F2F3BB /* star.png */; };
@@ -229,18 +230,19 @@
 		7D4E881E170A3F6A004B43DA /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		7D4E8820170A498D004B43DA /* ball.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ball.jpg; sourceTree = "<group>"; };
 		7D4E8822170A4A8D004B43DA /* redball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redball.png; sourceTree = "<group>"; };
-		7D6C2BE017133E4900C962C1 /* GameComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameComponents.h; path = ../GameComponents.h; sourceTree = "<group>"; };
-		7D6C2BE117133E4900C962C1 /* GameComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameComponents.m; path = ../GameComponents.m; sourceTree = "<group>"; };
+		7D5BED331715C87C009CBDAC /* GUILabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUILabels.h; sourceTree = "<group>"; };
+		7D5BED341715C87C009CBDAC /* GUILabels.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GUILabels.mm; sourceTree = "<group>"; };
+		7D6C2BE017133E4900C962C1 /* GameComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponents.h; sourceTree = "<group>"; };
+		7D6C2BE117133E4900C962C1 /* GameComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameComponents.m; sourceTree = "<group>"; };
 		7D6C2BE61713631600C962C1 /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
 		7D6C2BE71713631600C962C1 /* Ball.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Ball.mm; sourceTree = "<group>"; };
 		7D6C2BE9171365DF00C962C1 /* bricks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bricks.h; sourceTree = "<group>"; };
 		7D6C2BEA171365DF00C962C1 /* bricks.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = bricks.mm; sourceTree = "<group>"; };
 		7D6C2BEC17136BD300C962C1 /* Paddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paddle.h; sourceTree = "<group>"; };
 		7D6C2BED17136BD300C962C1 /* Paddle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Paddle.mm; sourceTree = "<group>"; };
-		7D6C2BEF17136D3300C962C1 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
-		7D6C2BF017136D3300C962C1 /* World.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = World.mm; sourceTree = "<group>"; };
-		7D6C2BF21713734D00C962C1 /* GUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIView.h; sourceTree = "<group>"; };
-		7D70D9D0170B434B00F2F3BB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7D6C2BEF17136D3300C962C1 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		7D6C2BF017136D3300C962C1 /* MainController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainController.mm; sourceTree = "<group>"; };
+		7D70D9D0170B434B00F2F3BB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		7D70D9D2170B9E8500F2F3BB /* LifeHeart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LifeHeart.png; path = "../../Group Application/groupapp/GroupApplication/GroupApplication/Resources/images/LifeHeart.png"; sourceTree = "<group>"; };
 		7D70D9D4170BA41700F2F3BB /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = ../../../Downloads/star.png; sourceTree = "<group>"; };
 		7D7459FF170DE13400BDB897 /* Sky_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sky_Blue.png; path = ../../../Downloads/Sky_Blue.png; sourceTree = "<group>"; };
@@ -638,18 +640,20 @@
 		7D97E596170357BF0091EE6A = {
 			isa = PBXGroup;
 			children = (
+				7D5BED331715C87C009CBDAC /* GUILabels.h */,
+				7D5BED341715C87C009CBDAC /* GUILabels.mm */,
 				7D80F1B5170F554900CEEDED /* ScoreScene.h */,
 				7D80F1B6170F554900CEEDED /* ScoreScene.mm */,
 				7D6C2BE61713631600C962C1 /* Ball.h */,
 				7D6C2BE71713631600C962C1 /* Ball.mm */,
 				7D6C2BE9171365DF00C962C1 /* bricks.h */,
 				7D6C2BEA171365DF00C962C1 /* bricks.mm */,
-				7D6C2BEF17136D3300C962C1 /* World.h */,
-				7D6C2BF017136D3300C962C1 /* World.mm */,
+				7D6C2BEF17136D3300C962C1 /* MainController.h */,
+				7D6C2BF017136D3300C962C1 /* MainController.mm */,
 				7D6C2BEC17136BD300C962C1 /* Paddle.h */,
 				7D6C2BED17136BD300C962C1 /* Paddle.mm */,
-				7D70D9D0170B434B00F2F3BB /* Default-568h@2x.png */,
-				7D6C2BF21713734D00C962C1 /* GUIView.h */,
+				7D6C2BE017133E4900C962C1 /* GameComponents.h */,
+				7D6C2BE117133E4900C962C1 /* GameComponents.m */,
 				7D4E8814170A2798004B43DA /* MyContactListener.h */,
 				7D4E8815170A2798004B43DA /* MyContactListener.mm */,
 				7D97E5B4170357BF0091EE6A /* BreakoutClone */,
@@ -687,8 +691,6 @@
 			children = (
 				7D97E7BF170357C40091EE6A /* AppDelegate.h */,
 				7D97E7C0170357C40091EE6A /* AppDelegate.mm */,
-				7D6C2BE017133E4900C962C1 /* GameComponents.h */,
-				7D6C2BE117133E4900C962C1 /* GameComponents.m */,
 				7D97E7C2170357C40091EE6A /* GameLayer.h */,
 				7D97E7C3170357C40091EE6A /* GameLayer.mm */,
 				7D4E881B170A30EC004B43DA /* GameOverScreen.h */,
@@ -715,6 +717,7 @@
 				7D97E5B8170357BF0091EE6A /* Default-Landscape~ipad.png */,
 				7D97E5BA170357C00091EE6A /* fps_images.png */,
 				7D97E5BC170357C00091EE6A /* fps_images-hd.png */,
+				7D70D9D0170B434B00F2F3BB /* Default-568h@2x.png */,
 				7D97E7D517035C4F0091EE6A /* cyscorpion.gif */,
 				7D7459FF170DE13400BDB897 /* Sky_Blue.png */,
 				7D4E8820170A498D004B43DA /* ball.jpg */,
@@ -1491,7 +1494,8 @@
 				7D6C2BE81713631600C962C1 /* Ball.mm in Sources */,
 				7D6C2BEB171365DF00C962C1 /* bricks.mm in Sources */,
 				7D6C2BEE17136BD300C962C1 /* Paddle.mm in Sources */,
-				7D6C2BF117136D3300C962C1 /* World.mm in Sources */,
+				7D6C2BF117136D3300C962C1 /* MainController.mm in Sources */,
+				7D5BED351715C87C009CBDAC /* GUILabels.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

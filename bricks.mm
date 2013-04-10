@@ -12,14 +12,10 @@
 @implementation bricks
 
 
--(id)init
+-(bricks*)initWithWorld:(b2World*)world
 {
-    
-    b2World*_world;
-    
-    b2Vec2 gravity = b2Vec2 (0.0f, 0.0f);
-    
-    _world = new b2World(gravity);
+if (self=[super init])
+{
     
     
     for (int i = 0; i<31; i++)
@@ -47,7 +43,7 @@
         blockBodyDef.type = b2_staticBody;
         blockBodyDef.position.Set(xOffset/PTM_RATIO, 340/PTM_RATIO);
         blockBodyDef.userData=block;
-        b2Body *blockBody =_world->CreateBody(&blockBodyDef);
+        //b2Body *blockBody =_world->CreateBody(&blockBodyDef);
         
         //shape definition
         
@@ -56,7 +52,7 @@
         blockShapeDef.density=10.0;
         blockShapeDef.friction = 0.0;
         blockShapeDef.restitution=1.0f;
-        blockBody->CreateFixture(&blockShapeDef);
+       // blockBody->CreateFixture(&blockShapeDef);
         
      
         
@@ -96,7 +92,7 @@
         block2BodyDef.type = b2_staticBody;
         block2BodyDef.position.Set(xOffset/PTM_RATIO, 330/PTM_RATIO);
         block2BodyDef.userData=block2;
-        b2Body *block2Body = _world->CreateBody(&block2BodyDef);
+        b2Body *block2Body = world->CreateBody(&block2BodyDef);
         //shape definition
         
        b2FixtureDef block2ShapeDef;
@@ -135,7 +131,7 @@
         block3BodyDef.type = b2_staticBody;
         block3BodyDef.position.Set(xOffset/PTM_RATIO, 330/PTM_RATIO);
         block3BodyDef.userData=block3;
-        b2Body *block3Body = _world->CreateBody(&block3BodyDef);
+        b2Body *block3Body = world->CreateBody(&block3BodyDef);
         
         
         
@@ -146,7 +142,7 @@
         block3ShapeDef.density=10.0;
         block3ShapeDef.friction = 0.0;
         block3ShapeDef.restitution=1.0f;
-        block3Body->CreateFixture(&block3ShapeDef);
+       block3Body->CreateFixture(&block3ShapeDef);
         
         
        
@@ -157,8 +153,8 @@
     }
 
     
-    
-    
+    return self;
+}
     
 }
 

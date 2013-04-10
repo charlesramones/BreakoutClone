@@ -24,5 +24,7 @@
     
     
 }
+@property(nonatomic, strong) CCSprite*paddle;
+
 
 @end

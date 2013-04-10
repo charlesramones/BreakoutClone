@@ -10,17 +10,27 @@
 
 
 @implementation Paddle
--(id) init{
+-(Paddle*)initWithWorld:(b2World*)world
+{
+    
+    if (self=[super init])
+    {
+        
+        
+    
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
+        
+        paddle = [CCSprite spriteWithFile:@"Sky_Blue.png"];
+        
     
     //Creation of body of paddle
-    //b2BodyDef paddleBodyDef;
+   
     paddleBodyDef.type = b2_dynamicBody;
     paddleBodyDef.position.Set(winSize.width/2/PTM_RATIO, 100/PTM_RATIO);
     paddleBodyDef.userData=paddle;
-    //_paddleBody = _world->CreateBody(&paddleBodyDef);
+    _paddleBody = world->CreateBody(&paddleBodyDef);
     
     
     //Create paddle shape
@@ -44,5 +54,8 @@
     
     
     
+}
+
+return self;
 }
 @end

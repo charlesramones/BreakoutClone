@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
-#import "World.h"
+#import "MainController.h"
 #define PTM_RATIO 32.0
 
 
@@ -34,6 +34,8 @@
    
     
 }
+
+-(bricks*)initWithWorld:(b2World*)world;
 
 @property(nonatomic)b2BodyDef*blockBodyDef;
 @property(nonatomic)b2BodyDef *block2BodyDef;

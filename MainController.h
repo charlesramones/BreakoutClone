@@ -13,19 +13,27 @@
 #import "Ball.h"
 #import "bricks.h"
 #import "Paddle.h"
+#import "GUILabels.h"
 #define PTM_RATIO 32.0
 
-@interface World : CCLayerColor {
+@interface MainController : CCLayerColor {
     
     
-    b2World*_world;
+    b2World*world;
     b2Body *_groundBody;
     b2Fixture *_bottomFixture;
     MyContactListener *_contactListener;
     b2Vec2 force;
+    GUILabels*gui;
+    Ball*bola;
+    bricks*blocks;
+    Paddle*padel;
+    
     
 }
 
-@property(nonatomic)b2World*_world;
+
+@property(nonatomic)b2World*world;
+
 
 @end

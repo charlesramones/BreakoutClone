@@ -55,7 +55,7 @@
        _pauseScreenUp = FALSE;
        
        CCMenuItemFont *pauseMenuItem = [CCMenuItemFont itemWithString:@"Pause" target:self selector:@selector(PauseButtonTapped:)];
-       pauseMenuItem.position = ccp(250,300);
+       pauseMenuItem.position = ccp(300,300);
        
        
        CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
